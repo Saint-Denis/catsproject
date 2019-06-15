@@ -8,7 +8,7 @@ class CatsService {
     const response = await fetch(path);
 
     if (!response.ok) {
-      throw new Error(`getRandomCat() failed, HTTP status ${response.status}`);
+      throw new Error(`getResource() failed, HTTP status ${response.status}`);
     }
 
     return await response.json();
@@ -16,6 +16,17 @@ class CatsService {
 
   async getRandomCat() {
     const res = await this.getResource("images/search");
+    return res;
+  }
+
+  async getAllBreeds() {
+    const res = await this.getResource("breeds");
+    return res;
+  }
+
+  async getSpecificBreed(id) {
+    const res = await this.getResource(`images/search?breed_ids=${id}`);
+    console.log("getSpecificBreeds", res);
     return res;
   }
 }
