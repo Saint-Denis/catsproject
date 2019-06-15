@@ -1,11 +1,13 @@
 .main-nav {
   width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
   &__list {
     display: flex;
     justify-content: space-between;
     margin: 0;
     padding: 0;
+  }
+  &__item {
+    padding: 15px 0;
+    cursor: pointer;
   }
 }

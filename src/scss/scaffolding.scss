@@ -1,3 +1,7 @@
+@import "helpers/fonts.scss";
+@import "helpers/vars.scss";
+@import url("https://rsms.me/inter/inter.css");
+
 html {
   box-sizing: border-box;
 }
@@ -11,7 +15,46 @@ html {
 body {
   margin: 0;
   padding: 0;
+  height: 100%;
+  font-family: "Inter", sans-serif;
   font-size: 18px;
   line-height: 1.15;
-  color: #fff;
+  font-weight: 500;
+  color: #000;
+}
+
+.container {
+  width: 100%;
+  max-width: 1170px;
+  margin: 0 auto;
+}
+
+h1 {
+  margin: 0;
+  margin-bottom: 20px;
+  font-family: "Billabong Regular", serif;
+  font-size: 76px;
+  text-align: center;
+  color: $color-blue;
+}
+
+p {
+  margin: 0;
+  margin-bottom: 20px;
+  font-size: 30px;
+}
+
+img {
+  max-width: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }

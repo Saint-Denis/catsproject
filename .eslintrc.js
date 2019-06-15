@@ -6,6 +6,10 @@ module.exports = {
     "import/newline-after-import": "off",
     "import/no-extraneous-dependencies": ["error", { devDependencies: true }]
   },
+  env: {
+    browser: true
+  },
+  parser: "babel-eslint",
   settings: {
     react: {
       version: require("./package.json").dependencies.react
