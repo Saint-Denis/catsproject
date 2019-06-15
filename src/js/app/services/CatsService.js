@@ -26,7 +26,6 @@ class CatsService {
 
   async getSpecificBreed(id) {
     const res = await this.getResource(`images/search?breed_ids=${id}`);
-    console.log("getSpecificBreeds", res);
     return res;
   }
 }

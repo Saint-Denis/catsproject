@@ -8,7 +8,7 @@ class RandomCat extends Component {
   cats = new CatsService();
 
   state = {
-    randomCatImage: null,
+    catImage: null,
     breedsList: null,
     isLoading: true
   };
@@ -21,7 +21,7 @@ class RandomCat extends Component {
     });
     this.fetchRandomCat().then(res => {
       this.setState({
-        randomCatImage: res[0].url,
+        catImage: res[0].url,
         isLoading: false
       });
     });
@@ -42,26 +42,26 @@ class RandomCat extends Component {
 
     this.cats.getSpecificBreed(id).then(specificBreed => {
       this.setState({
-        randomCatImage: specificBreed[0].url,
+        catImage: specificBreed[0].url,
         isLoading: false
       });
     });
   };
 
   render() {
-    const { isLoading, randomCatImage, breedsList } = this.state;
+    const { isLoading, catImage, breedsList } = this.state;
 
     return (
       <section className="random-cat">
         <h1>Random Cat</h1>
-        <p className="random-cat">Select your random cat</p>
         {isLoading ? (
           <Loader type="ThreeDots" color="#4c68d7" height="200" width="100" />
         ) : (
           <figure className="random-cat__pic">
-            <img src={randomCatImage} />
+            <img src={catImage} />
           </figure>
         )}
+        <p className="random-cat">Select your random cat</p>
         <div className="random-cat__breeds">
           <div className="random-cat__breeds-list">
             <Swiper {...swiperConfig}>

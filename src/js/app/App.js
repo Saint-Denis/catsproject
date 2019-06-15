@@ -15,8 +15,8 @@ class App extends Component {
           <main className="main-content">
             <Switch>
               <Route exact path="/" component={Welcome} />
-              <Route path="/random" component={RandomCat} />
-              <Route path="/favorites" component={Favorites} />
+              <Route path="/random/" component={RandomCat} />
+              <Route path="/favorites/" component={Favorites} />
             </Switch>
           </main>
         </div>

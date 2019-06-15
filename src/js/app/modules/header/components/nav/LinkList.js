@@ -7,19 +7,19 @@ const LINKS = [
     linkText: "Welcome"
   },
   {
-    url: "/signin",
+    url: "/signin/",
     linkText: "Sign In"
   },
   {
-    url: "/signout",
+    url: "/signout/",
     linkText: "Sign Out"
   },
   {
-    url: "/random",
+    url: "/random/",
     linkText: "Random Cat"
   },
   {
-    url: "/favorites",
+    url: "/favorites/",
     linkText: "Favorites"
   }
 ];
