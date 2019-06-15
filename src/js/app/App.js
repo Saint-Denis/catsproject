@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import { hot } from "react-hot-loader";
+import { BrowserRouter as Router } from "react-router-dom";
+import Header from "./modules/header/Header";
 
 class App extends Component {
   render() {
     return (
-      <div>
-        <h1>My React</h1>
-      </div>
+      <Router>
+        <Header />
+      </Router>
     );
   }
 }

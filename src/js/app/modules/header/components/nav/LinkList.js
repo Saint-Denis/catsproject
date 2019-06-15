@@ -1,0 +1,41 @@
+import React from "react";
+import LinkItem from "./LinkItem";
+
+const LINKS = [
+  {
+    url: "/signin",
+    linkText: "Sign In"
+  },
+  {
+    url: "/signout",
+    linkText: "Sign Out"
+  },
+  {
+    url: "/",
+    linkText: "Home"
+  },
+  {
+    url: "/random",
+    linkText: "Random Cat"
+  },
+  {
+    url: "/favorites",
+    linkText: "Favorites"
+  }
+];
+
+function LinkList() {
+  const LinkListItem = LINKS.map(link => {
+    return (
+      <LinkItem key={link.linkText} url={link.url} linkText={link.linkText} />
+    );
+  });
+
+  return (
+    <nav className="main-nav">
+      <ul className="main-nav__list">{LinkListItem}</ul>
+    </nav>
+  );
+}
+
+export default LinkList;
