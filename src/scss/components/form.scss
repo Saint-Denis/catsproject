@@ -1,0 +1,43 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    max-width: 350px;
+    margin: 0 auto;
+    padding: 40px;
+    border: 1px solid $color-dirty-white;
+    &__field {
+        position: relative;
+        width: 100%;
+        margin-bottom: 6px;
+    }
+    &__button {
+        width: 100%;
+        padding: 5px 9px;
+        color: $color-white;
+        text-align: center;
+        border-radius: 4px;
+        background: $color-blue;
+        border: 1px solid $color-blue;
+        cursor: pointer;
+    }
+    label {
+        position: absolute;
+        top: 50%;
+        left: 8px;
+        font-size: 12px;
+        color: #999;
+        transform: translateY(-50%);
+    }
+    input {
+        width: 100%;
+        height: 36px;
+        padding: 9px 0 7px 8px;
+        font-size: 14px;
+        line-height: 18px;
+        text-overflow: ellipsis;
+        color: #262626;
+        background: $color-bg;
+        border: 1px solid $color-dirty-white;
+        overflow: hidden;
+    }
+}

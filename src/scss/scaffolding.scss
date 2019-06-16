@@ -1,6 +1,6 @@
 @import "helpers/fonts.scss";
 @import "helpers/vars.scss";
-@import url("https://rsms.me/inter/inter.css");
+@import url("https://fonts.googleapis.com/css?family=Rubik:300,400");
 
 html {
   box-sizing: border-box;
@@ -16,7 +16,7 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
-  font-family: "Inter", sans-serif;
+  font-family: "Rubik", sans-serif;
   font-size: 18px;
   line-height: 1.15;
   font-weight: 500;

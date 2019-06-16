@@ -3,16 +3,16 @@ import LinkItem from "./LinkItem";
 
 const LINKS = [
   {
-    url: "/",
-    linkText: "Welcome"
-  },
-  {
     url: "/signin/",
     linkText: "Sign In"
   },
   {
     url: "/signout/",
     linkText: "Sign Out"
+  },
+  {
+    url: "/",
+    linkText: "Welcome",
   },
   {
     url: "/random/",
