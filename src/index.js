@@ -21,6 +21,8 @@ const store = createStore(
         })),
         reduxFirestore(FirebaseConfig),
         reactReduxFirebase(FirebaseConfig, {
+            useFirestoreForProfile: true,
+            userProfile: 'users',
             attachAuthIsReady: true
         }),
         window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
@@ -35,4 +37,3 @@ store.firebaseAuthIsReady.then(()=> {
         document.getElementById("root")
     );
 })
-

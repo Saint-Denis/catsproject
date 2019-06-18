@@ -10,7 +10,7 @@ class SignIn extends Component {
     }
     handleChange = (e) => {
         this.setState({
-            [e.target.id]: e.target.value
+            [e.target.name]: e.target.value
         })
     }
     handleSubmit = (e) => {
@@ -25,19 +25,17 @@ class SignIn extends Component {
                 <h1>Sign In</h1>
                 <form className="form" onSubmit={this.handleSubmit}>
                     <div className="form__field">
-                        <label htmlFor="email">Email</label>
                         <input
                             type="email"
-                            id="email"
+                            name="email"
                             onChange={this.handleChange}
                             placeholder="Email"
                         />
                     </div>
                     <div className="form__field">
-                        <label htmlFor="password">Password</label>
                         <input
                             type="password"
-                            id="password"
+                            name="password"
                             onChange={this.handleChange}
                             placeholder="Password"
                          />
@@ -49,7 +47,7 @@ class SignIn extends Component {
                     </div>
                     <div className="form__field">
                         <div className="error">
-                            {authError ? <p>authError</p> : null}
+                            {authError ? <p>{authError}</p> : null}
                         </div>
                     </div>
                 </form>

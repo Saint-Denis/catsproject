@@ -12,7 +12,7 @@ class SignUp extends Component {
     }
     handleChange = (e) => {
         this.setState({
-            [e.target.id]: e.target.value
+            [e.target.name]: e.target.value
         })
     }
     handleSubmit = (e) => {
@@ -27,37 +27,33 @@ class SignUp extends Component {
                 <h1>Sign Up</h1>
                 <form className="form" onSubmit={this.handleSubmit}>
                     <div className="form__field">
-                        <label htmlFor="email">Email</label>
                         <input
                             type="email"
-                            id="email"
+                            name="email"
                             onChange={this.handleChange}
                             placeholder="Email"
                         />
                     </div>
                     <div className="form__field">
-                        <label htmlFor="password">Password</label>
                         <input
                             type="password"
-                            id="password"
+                            name="password"
                             onChange={this.handleChange}
                             placeholder="Password"
                         />
                     </div>
                     <div className="form__field">
-                        <label htmlFor="firstName">First Name</label>
                         <input
                             type="text"
-                            id="firstName"
+                            name="firstName"
                             onChange={this.handleChange}
                             placeholder="First Name"
                         />
                     </div>
                     <div className="form__field">
-                        <label htmlFor="lastName">Last Name</label>
                         <input
                             type="text"
-                            id="lastName"
+                            name="lastName"
                             onChange={this.handleChange}
                             placeholder="Last Name"
                         />
@@ -69,7 +65,7 @@ class SignUp extends Component {
                     </div>
                     <div className="form__field">
                         <div className="error">
-                            {authError ? <p>authError</p> : null}
+                            {authError ? <p>{authError}</p> : null}
                         </div>
                     </div>
                 </form>

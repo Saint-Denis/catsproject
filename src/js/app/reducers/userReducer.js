@@ -6,11 +6,20 @@ const initState = {
 
 const userReducer = (state = initState, action) => {
     switch (action.type) {
-        case favoritesTypes.ADD_TO_FAVORITE: {
-          return state
+      case favoritesTypes.ADD_TO_FAVORITE: {
+        return Object.assign({}, state, {
+          favorites: [
+            ...state.favorites,
+            {
+              catImage: action.catImage,
+              id: action.id,
+            }
+          ]
+        })
         }
         case favoritesTypes.REMOVE_FROM_FAVORITE: {
-          return state
+          const newState = state.favorites.filter(el.id !== action.id)
+          return newState;
         }
 
         default:
