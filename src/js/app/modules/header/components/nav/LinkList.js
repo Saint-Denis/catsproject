@@ -1,41 +1,63 @@
 import React from "react";
+import { connect } from "react-redux";
 import LinkItem from "./LinkItem";
 
-const LINKS = [
-  {
-    url: "/signin/",
-    linkText: "Sign In"
-  },
-  {
-    url: "/signout/",
-    linkText: "Sign Out"
-  },
+const SIGNEDINLINKS = [
   {
     url: "/",
     linkText: "Welcome",
   },
   {
-    url: "/random/",
+    url: "/random",
     linkText: "Random Cat"
   },
   {
-    url: "/favorites/",
+    url: "/favorites",
     linkText: "Favorites"
-  }
+  },
+  {
+    url: "/signout",
+    linkText: "Log Out"
+  },
 ];
 
-function LinkList() {
-  const LinkListItem = LINKS.map(link => {
-    return (
-      <LinkItem key={link.linkText} url={link.url} linkText={link.linkText} />
-    );
-  });
+const SIGNEDOUTLINKS = [
+  {
+    url: "/",
+    linkText: "Welcome",
+  },
+  {
+    url: "/signin",
+    linkText: "Sign In"
+  },
+  {
+    url: "/signup",
+    linkText: "Sign Up"
+  },
+];
 
+function LinkList({auth}) {
+  const LINKS = auth.uid ? SIGNEDINLINKS : SIGNEDOUTLINKS
   return (
     <nav className="main-nav">
-      <ul className="main-nav__list">{LinkListItem}</ul>
+      <ul className="main-nav__list">
+      {
+        LINKS.map(link => {
+          return (
+            <LinkItem key={link.linkText} url={link.url} linkText={link.linkText} />
+        )
+      })
+    }
+      </ul>
     </nav>
   );
 }
 
-export default LinkList;
+
+const mapStateToProps = (state) => {
+  return {
+    auth: state.firebase.auth,
+  }
+}
+
+export default connect(mapStateToProps)(LinkList);

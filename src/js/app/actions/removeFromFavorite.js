@@ -1,9 +1,9 @@
-import * as favouritesTypes from "../actionsType/favouritesTypes"
+import * as favoritesTypes from "../actionsType/favoritesTypes"
 
 const removeFromoFavourite = (id) => {
     return (dispatch)  => {
         dispatch({
-                type: favouritesTypes.REMOVE_FROM_FAVOURITE,
+                type: favoritesTypes.REMOVE_FROM_FAVORITE,
                 id,
             })
     }

@@ -3,14 +3,20 @@
   text-transform: uppercase;
   &__list {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     margin: 0;
     padding: 0;
   }
   &__item {
     padding: 15px 0;
+    margin-right: 30px;
     cursor: pointer;
+    &:first-child {
+      margin-right: auto;
+    }
+    &:last-child {
+      margin-right: 0;
+    }
     img {
       height: 40px;
     }

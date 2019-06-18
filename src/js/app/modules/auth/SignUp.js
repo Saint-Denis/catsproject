@@ -1,12 +1,14 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { signIn } from "../../actions/authActions";
+import { signUp } from "../../actions/authActions";
 
-class SignIn extends Component {
+class SignUp extends Component {
     state = {
         email: '',
-        password: '',
+        pasword: '',
+        firstName: '',
+        lastName: '',
     }
     handleChange = (e) => {
         this.setState({
@@ -15,14 +17,14 @@ class SignIn extends Component {
     }
     handleSubmit = (e) => {
        e.preventDefault();
-       this.props.signIn(this.state);
+       this.props.signUp(this.state);
     }
     render () {
-        const { authError, auth } = this.props
+        const { auth, authError } = this.props
         if(auth.uid) return <Redirect to="/" />
         return (
             <Fragment>
-                <h1>Sign In</h1>
+                <h1>Sign Up</h1>
                 <form className="form" onSubmit={this.handleSubmit}>
                     <div className="form__field">
                         <label htmlFor="email">Email</label>
@@ -40,11 +42,29 @@ class SignIn extends Component {
                             id="password"
                             onChange={this.handleChange}
                             placeholder="Password"
-                         />
+                        />
+                    </div>
+                    <div className="form__field">
+                        <label htmlFor="firstName">First Name</label>
+                        <input
+                            type="text"
+                            id="firstName"
+                            onChange={this.handleChange}
+                            placeholder="First Name"
+                        />
+                    </div>
+                    <div className="form__field">
+                        <label htmlFor="lastName">Last Name</label>
+                        <input
+                            type="text"
+                            id="lastName"
+                            onChange={this.handleChange}
+                            placeholder="Last Name"
+                        />
                     </div>
                     <div className="form__field">
                         <button className="form__button" type="submit">
-                            Login
+                            Sign Up
                         </button>
                     </div>
                     <div className="form__field">
@@ -60,15 +80,16 @@ class SignIn extends Component {
 
 const mapStateToProps = (state) => {
     return {
-      authError: state.auth.authError,
       auth: state.firebase.auth,
-    }
-  }
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        signIn: (cred) => dispatch(signIn(cred))
+      authError: state.auth.authError,
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        signUp: (newUser) => dispatch(signUp(newUser))
+    }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

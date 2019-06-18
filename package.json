@@ -45,10 +45,13 @@
     "firebase": "^6.2.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-firebase": "^2.2.8",
     "react-id-swiper": "^2.1.2",
     "react-redux-firebase": "^2.2.6",
     "redux-firestore": "^0.8.0",
     "redux-thunk": "^2.3.0",
+    "rxjs": "^6.5.2",
+    "rxjs-compat": "^6.5.2",
     "swiper": "^4.5.0"
   }
 }

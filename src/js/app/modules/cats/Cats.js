@@ -1,4 +1,6 @@
 import React, { Component, Fragment } from "react";
+import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 import Loader from "react-loader-spinner";
 import Breeds from "../breeds/Breeds"
 import Cat from "../cat/Cat"
@@ -57,7 +59,7 @@ class Cats extends Component {
 
   render() {
     const { isLoading, catImage, breedsList, randomCat, selectedBreedId, allCats } = this.state;
-
+    if(!this.props.auth.uid) return <Redirect to="/signin" />
     return (
       <Fragment>
         <h1>Random Cat</h1>
@@ -82,4 +84,10 @@ class Cats extends Component {
 }
 
 
-export default Cats ;
+const mapStateToProps = (state) => {
+  return {
+    auth: state.firebase.auth,
+  }
+}
+
+export default connect(mapStateToProps, null)(Cats)

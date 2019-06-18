@@ -21,12 +21,7 @@
         cursor: pointer;
     }
     label {
-        position: absolute;
-        top: 50%;
-        left: 8px;
-        font-size: 12px;
-        color: #999;
-        transform: translateY(-50%);
+        display: none;
     }
     input {
         width: 100%;
@@ -39,5 +34,12 @@
         background: $color-bg;
         border: 1px solid $color-dirty-white;
         overflow: hidden;
+    }
+    .error {
+        text-align: center;
+        color: red;
+        p {
+            font-size: 14px;
+        }
     }
 }

@@ -20,15 +20,19 @@ const store = createStore(
             getFirestore,
         })),
         reduxFirestore(FirebaseConfig),
-        reactReduxFirebase(FirebaseConfig),
+        reactReduxFirebase(FirebaseConfig, {
+            attachAuthIsReady: true
+        }),
         window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
     )
 );
 
+store.firebaseAuthIsReady.then(()=> {
+    ReactDOM.render(
+        <Provider store={store}>
+            <App />
+        </Provider>,
+        document.getElementById("root")
+    );
+})
 
-ReactDOM.render(
-    <Provider store={store}>
-        <App />
-    </Provider>,
-    document.getElementById("root")
-);
