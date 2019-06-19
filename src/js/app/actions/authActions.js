@@ -1,4 +1,4 @@
-import * as favoritesTypes from "../actionsType/favoritesTypes"
+import * as types from "../actionsType/types"
 
 
 const signIn = (credentials) => {
@@ -7,13 +7,15 @@ const signIn = (credentials) => {
         firebase.auth().signInWithEmailAndPassword(
             credentials.email,
             credentials.password
-        ).then(() => {
+        ).then((user) => {
             dispatch({
-                type: favoritesTypes.LOGIN_SUCCESS
+                type: types.LOGIN_SUCCESS,
+                payload: user,
             })
+            console.log('user')
         }).catch((err) => {
             dispatch({
-                type: favoritesTypes.LOGIN_ERROR,
+                type: types.LOGIN_ERROR,
                 err
             })
         })

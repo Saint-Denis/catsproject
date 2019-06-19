@@ -1,17 +1,15 @@
-import * as favoritesTypes from "../actionsType/favoritesTypes"
+import * as types from "../actionsType/types"
 
 const removeFromoFavourite = (id) => {
     return (dispatch, getState, { getFirebase, getFirestore }) => {
         const firestore = getFirestore();
-        const usersId = getState().firebase.auth.uid
-        firestore.collection('favorites').delete({
-            id,
-            usersId,
-        }).then(()=> {
+        firestore.collection('favorites')
+        .doc(id)
+        .delete()
+        .then(()=> {
             dispatch({
-                type: favoritesTypes.REMOVE_FROM_FAVORITE,
+                type: types.REMOVE_FROM_FAVORITE,
                 id,
-                usersId,
             })
         }).catch((err) => {
             console.log(err);

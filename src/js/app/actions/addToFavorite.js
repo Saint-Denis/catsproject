@@ -1,23 +1,27 @@
-import * as favoritesTypes from "../actionsType/favoritesTypes"
+import * as types from "../actionsType/types"
 
 const addToFavourite = (catImage, id) => {
     return (dispatch, getState, { getFirebase, getFirestore }) => {
         const firestore = getFirestore();
-        const usersId = getState().firebase.auth.uid
-        firestore.collection('favorites').add({
+        const userId = getState().firebase.auth.uid;
+        console.log(userId)
+        firestore
+            .collection('favorites')
+            .doc(userId)
+            .set({
             catImage,
             id,
-            usersId,
+            userId,
         }).then(()=> {
             dispatch({
-                type: favoritesTypes.ADD_TO_FAVORITE,
+                type: types.ADD_TO_FAVORITE,
                 catImage,
                 id,
-                usersId,
             })
         }).catch((err) => {
             console.log(err);
-        })
+    })
+
     }
 }
 
