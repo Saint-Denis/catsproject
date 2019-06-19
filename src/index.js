@@ -19,7 +19,7 @@ const store = createStore(
             getFirebase,
             getFirestore,
         })),
-        reduxFirestore(FirebaseConfig),
+        reduxFirestore(FirebaseConfig, { logErrors: true, enableLogging: true }),
         reactReduxFirebase(FirebaseConfig, {
             useFirestoreForProfile: true,
             userProfile: 'users',

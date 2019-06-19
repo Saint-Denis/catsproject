@@ -12,7 +12,6 @@ const signIn = (credentials) => {
                 type: types.LOGIN_SUCCESS,
                 payload: user,
             })
-            console.log('user')
         }).catch((err) => {
             dispatch({
                 type: types.LOGIN_ERROR,
@@ -27,7 +26,7 @@ const signOut = () => {
         const firebase = getFirebase();
         firebase.auth().signOut().then(()=> {
             dispatch({
-                type: favoritesTypes.SIGN_OUT_SUCCESS
+                type: types.SIGN_OUT_SUCCESS
             })
         })
 
@@ -49,9 +48,9 @@ const signUp = (newUser) => {
           initials: newUser.firstName[0] + newUser.lastName[0]
         });
       }).then(() => {
-        dispatch({ type: favoritesTypes.SIGN_UP_SUCCESS });
+        dispatch({ type: types.SIGN_UP_SUCCESS });
       }).catch((err) => {
-        dispatch({ type: favoritesTypes.SIGN_UP_ERROR, err});
+        dispatch({ type: types.SIGN_UP_ERROR, err});
       });
     }
 }

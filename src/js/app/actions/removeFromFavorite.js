@@ -1,6 +1,6 @@
 import * as types from "../actionsType/types"
 
-const removeFromoFavourite = (id) => {
+const removeFromoFavorite = (id) => {
     return (dispatch, getState, { getFirebase, getFirestore }) => {
         const firestore = getFirestore();
         firestore.collection('favorites')
@@ -17,4 +17,4 @@ const removeFromoFavourite = (id) => {
     }
 }
 
-export default removeFromoFavourite;
+export default removeFromoFavorite;

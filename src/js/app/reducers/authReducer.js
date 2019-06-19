@@ -21,7 +21,10 @@ const authReducer = (state = initState, action) => {
            }
         }
         case types.SIGN_OUT_SUCCESS: {
-            return state;
+            return {
+                ...state,
+                favorites: []
+              }
         }
         case types.SIGN_UP_SUCCESS: {
             return {

@@ -1,28 +1,46 @@
 import * as types from "../actionsType/types"
 
-const addToFavourite = (catImage, id) => {
-    return (dispatch, getState, { getFirebase, getFirestore }) => {
+const addToFavorite = (catImage, id) => {
+    return async (dispatch, getState, { getFirestore }) => {
         const firestore = getFirestore();
         const userId = getState().firebase.auth.uid;
-        console.log(userId)
-        firestore
-            .collection('favorites')
-            .doc(userId)
-            .set({
+        const newFavorite = {
             catImage,
             id,
-            userId,
-        }).then(()=> {
+        };
+
+        try {
+            const res = await firestore
+              .collection('favorites')
+              .doc(userId)
+              .get();
+
+            if(!res.data()) {
+              firestore
+                .collection('favorites')
+                .doc(userId)
+                .set({
+                    favorites: [newFavorite],
+                });
+            } else {
+              firestore
+                .collection('favorites')
+                .doc(userId)
+                .update({
+                    favorites: [...res.data().favorites, newFavorite],
+                });
+            }
+
             dispatch({
                 type: types.ADD_TO_FAVORITE,
                 catImage,
                 id,
             })
-        }).catch((err) => {
-            console.log(err);
-    })
-
+            return true;
+          } catch (err) {
+            console.log('err', err);
+          }
     }
 }
 
-export default addToFavourite;
+export default addToFavorite;

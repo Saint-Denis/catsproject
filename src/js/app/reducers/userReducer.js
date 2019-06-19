@@ -1,20 +1,22 @@
 import * as types from "../actionsType/types"
-
 const initState = {
-  favorites: [],
+  favorites: []
 }
 
 const userReducer = (state = initState, action) => {
-    switch (action.type) {
+  switch (action.type) {
       case types.FETCH_FAVORITES: {
-        console.log('FETCH_FAVORITES action.payload', action.payload)
         return {
           ...state,
-          favorites: action.payload,
+          favorites: [
+            ...state.favorites,
+            {
+              favorites: payload.favorites,
+            }
+          ]
         }
       }
       case types.ADD_TO_FAVORITE: {
-        console.log('action.catImage', action.catImage)
         return {
           ...state,
           favorites: [
@@ -25,8 +27,8 @@ const userReducer = (state = initState, action) => {
             }
           ]
         }
-        }
-        case types.REMOVE_FROM_FAVORITE: {
+      }
+      case types.REMOVE_FROM_FAVORITE: {
           return {
             ...state,
             favorites: [...state.favorites.filter(el => el.id !== action.id)]

@@ -3,53 +3,57 @@ import { connect } from "react-redux";
 import { compose } from "redux";
 import { Redirect } from "react-router-dom";
 import { firestoreConnect } from "react-redux-firebase";
+import Loader from "react-loader-spinner";
 import Cat from "../cat/Cat"
-import fetchFavorites from "../../actions/fetchFavorites";
 
-class Favorites extends Component {
-  // componentDidMount(){
-  //   this.props.fetchFavorites();
-  // }
-  // if(!this.props.auth.uid) return <Redirect to="/signin" />
-  render() {
-    const { favorites } = this.props
-    console.log('favorites', favorites)
-    if(!favorites) return null
-    return (
-      <Fragment>
-         <h1>Favorites Page</h1>
-         <div className="favourites">
-             {favorites && favorites.map(favoritesItem => {
-               return (
-                 <Cat
-                   key={favoritesItem.id}
-                   catImage={favoritesItem.catImage}
-                 />
-               )
-             })}
-         </div>
-       </Fragment>
-     )
+function Favorites ({favorites, userId, requested }) {
+
+  if (requested) {
+    const userFavoritesArray = favorites[userId].favorites;
+    let content;
+
+    console.log('userFavoritesArray', userFavoritesArray)
+    console.log('favorites[userId].favorites', favorites[userId].favorites)
+    console.log('favorites[userId]', favorites[userId])
+
   }
+    // if (!favorites) {
+    //   content = <Loader />
+    // } else if (!favorites[userId] && requested[`favorites/${userId}`]) {
+    //     content = <p>You have not favorites</p>
+    //   } else {
+    //     content = userFavoritesArray.map(item => {
+    //       return (
+    //         <Cat
+    //           key={item.id}
+    //           catImage={item.catImage}
+    //         />
+    //       )
+    //   })
+    // }
+
+  // return (
+  //   <Fragment>
+  //     <h1>Favorites Page</h1>
+  //     <div className="favourites">{this.getContent()}</div>
+  //   </Fragment>
+  // )
+  return null
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    fetchFavorites: () => dispatch(fetchFavorites())
-  }
-}
+
 
 const mapStateToProps = (state) => {
-  const userId = state.firebase.auth.uid
   return {
-    favorites: state.firestore.data.favorites[userId],
+    favorites: state.firestore.data.favorites,
     auth: state.firebase.auth,
+    userId: state.firebase.auth.uid,
+    requesting: state.firestore.status.requesting,
+    requested:  state.firestore.requested,
   }
 }
 
 export default compose(
-  connect(mapStateToProps, mapDispatchToProps),
-  firestoreConnect([
-      {collection: 'favorites'}
-  ])
+  connect(mapStateToProps, null),
+  firestoreConnect(props => [`favorites/${props.userId}`])
 )(Favorites)

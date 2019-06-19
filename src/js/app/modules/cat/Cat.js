@@ -20,7 +20,7 @@ class Cat extends Component {
             removeFromFavorite,
             catImage,
         } = this.props
-        console.log('внутри')
+
         this.setState(prevState => ({
             isFavorite: !prevState.isFavorite
         }));
@@ -66,5 +66,3 @@ const mapDispatchToProps = (dispatch) => {
 
 
 export default connect(null, mapDispatchToProps)(Cat);
-
-
