@@ -1,19 +1,32 @@
 import * as types from "../actionsType/types"
 
 const removeFromoFavorite = (id) => {
-    return (dispatch, getState, { getFirebase, getFirestore }) => {
+    return async (dispatch, getState, { getFirestore }) => {
         const firestore = getFirestore();
-        firestore.collection('favorites')
-        .doc(id)
-        .delete()
-        .then(()=> {
+        const userId = getState().firebase.auth.uid;
+
+        try {
+            const res = await firestore
+              .collection('favorites')
+              .doc(userId)
+              .get();
+
+            const previousFavorites = res.data().favorites;
+            const newFavorites = previousFavorites.filter(el => el.id !== id)
+
+            await firestore
+              .collection('favorites')
+              .doc(userId)
+              .update({
+                favorites: newFavorites,
+              });
             dispatch({
                 type: types.REMOVE_FROM_FAVORITE,
                 id,
-            })
-        }).catch((err) => {
-            console.log(err);
-        })
+             });
+          } catch (err) {
+            console.log(err)
+        }
     }
 }
 

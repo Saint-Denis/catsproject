@@ -58,7 +58,7 @@ class Cats extends Component {
 
 
   render() {
-    const { isLoading, catImage, breedsList, randomCat, selectedBreedId, allCats } = this.state;
+    const { isLoading, catImage, breedsList, randomCat, selectedBreedId } = this.state;
     if(!this.props.auth.uid) return <Redirect to="/signin" />
     return (
       <Fragment>
@@ -71,7 +71,6 @@ class Cats extends Component {
             catImage={catImage}
             randomCatId={randomCat.id}
             selectedBreedId={selectedBreedId}
-            allCats={allCats}
         />
         )}
         <Breeds

@@ -8,12 +8,7 @@ const userReducer = (state = initState, action) => {
       case types.FETCH_FAVORITES: {
         return {
           ...state,
-          favorites: [
-            ...state.favorites,
-            {
-              favorites: payload.favorites,
-            }
-          ]
+          favorites: [...action.payload,]
         }
       }
       case types.ADD_TO_FAVORITE: {
@@ -29,13 +24,18 @@ const userReducer = (state = initState, action) => {
         }
       }
       case types.REMOVE_FROM_FAVORITE: {
+        const newFavorites = state.favorites.filter(el => el.id !== action.id)
+        console.log('newFavorites', newFavorites)
           return {
             ...state,
-            favorites: [...state.favorites.filter(el => el.id !== action.id)]
+            favorites: [...newFavorites]
           }
         }
+      case types.SIGN_OUT_SUCCESS: {
+          return initState;
+      }
 
-        default:
+      default:
           return state
       }
 }

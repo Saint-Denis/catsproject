@@ -20,12 +20,6 @@ const authReducer = (state = initState, action) => {
                user: action.payload
            }
         }
-        case types.SIGN_OUT_SUCCESS: {
-            return {
-                ...state,
-                favorites: []
-              }
-        }
         case types.SIGN_UP_SUCCESS: {
             return {
                 ...state,

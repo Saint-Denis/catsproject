@@ -1,7 +1,22 @@
-import React from "react";
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import fetchFavorites from "../../actions/fetchFavorites"
 
-function Welcome() {
-  return <h1>The Cats</h1>;
+class Welcome extends Component {
+  componentDidMount () {
+    this.props.fetchFavorites();
+  }
+
+  render () {
+    return <h1>The Cats</h1>;
+  }
 }
 
-export default Welcome;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchFavorites: () => dispatch(fetchFavorites()),
+  }
+}
+
+
+export default connect(null, mapDispatchToProps)(Welcome);

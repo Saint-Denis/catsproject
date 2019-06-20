@@ -1,48 +1,42 @@
 import * as types from "../actionsType/types"
 
-const fetchFavorites = (id) => {
+const fetchFavorites = () => {
   return async (dispatch, getState, { getFirestore }) => {
         const userId = getState().firebase.auth.uid;
         const firestore = getFirestore();
-        // const userId = getState().firebase.auth.uid;
 
-        console.log('userId', userId)
+        const res = await firestore
+              .collection('favorites')
+              .doc(userId)
+              .get();
 
-        dispatch({
-          type: types.FETCH_FAVORITES,
-          payload: await firestore
-                  .collection('favorites')
-                  .doc(userId)
-                  .get()
-        })
+            if(res.data()) {
+              dispatch({
+                type: types.FETCH_FAVORITES,
+                payload: res.data().favorites,
+              })
+            } else {
+              console.log("No such document!");
+            }
 
 
-        // try {
-        //     const res = await firestore
-        //       .collection('favorites')
-        //       .doc(id)
-        //       .get();
-        //   console.log('id', id)
-        //   console.log('result----------', res)
-        //   dispatch({
-        //     type: types.FETCH_FAVORITES,
-        //     payload: res.data(),
+        // firestore
+        //   .collection("favorites")
+        //   .doc(userId)
+        //   .get()
+        //   .then(doc => {
+        //     if (doc.exists) {
+        //       console.log("Document data:", doc.data());
+        //       dispatch({
+        //         type: types.FETCH_FAVORITES,
+        //         payload: doc.data().favorites,
+        //     })
+        //     } else {
+        //       // doc.data() will be undefined in this case
+        //       console.log("No such document!");
+        //   }
+
         //   })
-
-        //   if (!res.data()) {
-        //     console.log('FETCH_FAVORITES');
-        //     dispatch({
-        //       type: types.FETCH_FAVORITES,
-        //       payload: res.data(),
-        //     })
-        //   } else {
-        //     dispatch({
-        //       type: types.NEW_USER,
-        //     })
-        //   }
-        //   } catch (err) {
-        //     console.log('err', err);
-        //   }
     }
 }
 
