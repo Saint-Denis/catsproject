@@ -11,6 +11,9 @@
     padding: 15px 0;
     margin-right: 30px;
     cursor: pointer;
+    @media screen and (max-width: 600px) {
+      margin-right: 20px;
+    }
     &:first-child {
       margin-right: auto;
     }

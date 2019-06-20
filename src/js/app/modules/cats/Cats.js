@@ -5,6 +5,7 @@ import Loader from "react-loader-spinner";
 import Breeds from "../breeds/Breeds"
 import Cat from "../cat/Cat"
 import CatsService from "../../services/CatsService";
+import fetchFavorites from "../../actions/fetchFavorites";
 
 class Cats extends Component {
   cats = new CatsService();
@@ -21,6 +22,7 @@ class Cats extends Component {
   componentDidMount() {
     const randomCatPromise = this.fetchRandomCat();
     const breedsPromise = this.fetchBreeds();
+    this.props.fetchFavorites(this.props.auth.uid);
 
     Promise.all([randomCatPromise, breedsPromise]).then(list => {
       const allCatsList = [...list[0], ...list[1]]
@@ -56,15 +58,27 @@ class Cats extends Component {
     });
   };
 
+  setActuallyTitle = () => {
+    const { selectedBreedId, breedsList } = this.state;
+
+    if (selectedBreedId) {
+      const selectedBreed = breedsList.find(el => el.id === selectedBreedId)
+      return <h1>{selectedBreed.name}</h1>
+    } else {
+      return <h1>Random Cat</h1>
+    }
+  }
+
 
   render() {
     const { isLoading, catImage, breedsList, randomCat, selectedBreedId } = this.state;
-    if(!this.props.auth.uid) return <Redirect to="/signin" />
+    if (!this.props.auth.uid) return <Redirect to="/signin" />
+
     return (
       <Fragment>
-        <h1>Random Cat</h1>
+        {this.setActuallyTitle()}
         { isLoading ? (
-          <Loader type="ThreeDots" color="#4c68d7" height="200" width="100" />
+          <Loader type="ThreeDots" color="#4c68d7" height="250" width="100" />
         ) : (
           <Cat
             isLoading={isLoading }
@@ -76,6 +90,7 @@ class Cats extends Component {
         <Breeds
           breedsList={breedsList}
           handleSpecificBreed={this.handleSpecificBreed}
+          selectedBreedId={selectedBreedId}
           />
       </Fragment>
     );
@@ -89,4 +104,10 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, null)(Cats)
+const mapDispatchToProps = (dispatch) => {
+  return {
+      fetchFavorites: (id) => dispatch(fetchFavorites(id))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cats)

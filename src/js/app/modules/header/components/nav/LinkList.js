@@ -36,13 +36,15 @@ const SIGNEDOUTLINKS = [
   },
 ];
 
-function LinkList({auth}) {
+function LinkList({auth, favorites}) {
   const LINKS = auth.uid ? SIGNEDINLINKS : SIGNEDOUTLINKS
+
   return (
     <nav className="main-nav">
       <ul className="main-nav__list">
       {
         LINKS.map(link => {
+          if (link.url === "/favorites" && !Object.keys(favorites).length) return null
           return (
             <LinkItem key={link.linkText} url={link.url} linkText={link.linkText} />
         )
@@ -57,6 +59,7 @@ function LinkList({auth}) {
 const mapStateToProps = (state) => {
   return {
     auth: state.firebase.auth,
+    favorites: state.user.favorites,
   }
 }
 

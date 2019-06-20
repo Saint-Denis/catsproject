@@ -21,7 +21,8 @@ class SignIn extends Component {
     }
     render () {
         const { authError, auth } = this.props
-        if(auth.uid) return <Redirect to="/" />
+        if (auth.uid) return <Redirect to="/" />
+
         return (
             <Fragment>
                 <h1>Sign In</h1>

@@ -4,11 +4,13 @@ import { compose } from "redux";
 import { Redirect } from "react-router-dom";
 import { firestoreConnect } from "react-redux-firebase";
 import Cat from "../cat/Cat"
+import fetchFavorites from "../../actions/fetchFavorites";
 
-function Favorites ({favorites, userId}) {
-  const isReadyToShowFavorites = favorites && favorites[userId]  && favorites[userId].favorites.length > 0
+function Favorites ({favorites, fetchFavorites, userId}) {
+  const isReadyToShowFavorites = favorites && favorites[userId] && favorites[userId].favorites.length > 0;
+  if (!isReadyToShowFavorites) return null;
+  fetchFavorites(userId);
 
-  if(!isReadyToShowFavorites) return null
   return (
     <Fragment>
       <h1>Favorites Page</h1>
@@ -39,7 +41,13 @@ const mapStateToProps = (state) => {
   }
 }
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+      fetchFavorites: (id) => dispatch(fetchFavorites(id))
+  }
+}
+
 export default compose(
-  connect(mapStateToProps, null),
+  connect(mapStateToProps, mapDispatchToProps),
   firestoreConnect(props => [`favorites/${props.userId}`])
 )(Favorites)

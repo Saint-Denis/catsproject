@@ -16,27 +16,10 @@ const fetchFavorites = () => {
                 payload: res.data().favorites,
               })
             } else {
-              console.log("No such document!");
+              dispatch({
+                type: types.FETCH_FAVORITES_FAILED,
+              })
             }
-
-
-        // firestore
-        //   .collection("favorites")
-        //   .doc(userId)
-        //   .get()
-        //   .then(doc => {
-        //     if (doc.exists) {
-        //       console.log("Document data:", doc.data());
-        //       dispatch({
-        //         type: types.FETCH_FAVORITES,
-        //         payload: doc.data().favorites,
-        //     })
-        //     } else {
-        //       // doc.data() will be undefined in this case
-        //       console.log("No such document!");
-        //   }
-
-        //   })
     }
 }
 

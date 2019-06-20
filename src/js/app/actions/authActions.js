@@ -1,6 +1,5 @@
 import * as types from "../actionsType/types"
 
-
 const signIn = (credentials) => {
     return (dispatch, getState, { getFirebase}) => {
         const firebase = getFirebase();

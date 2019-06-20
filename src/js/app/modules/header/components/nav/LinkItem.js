@@ -6,7 +6,8 @@ import { signOut } from "../../../../actions/authActions"
 
 function LinkItem({ url, linkText, signOut }) {
   const isHome = url === '/'
-  const islogout = url ==='/signout'
+  const islogout = url === '/signout'
+
   return (
     <li className="main-nav__item">
       {isHome ? (
@@ -18,7 +19,7 @@ function LinkItem({ url, linkText, signOut }) {
           to={url}
           className="main-nav__link"
           onClick = {islogout ? signOut : null}
-          >
+        >
           {linkText}
         </NavLink>
       )

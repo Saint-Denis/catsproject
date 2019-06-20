@@ -22,12 +22,19 @@ body {
   font-weight: 500;
   color: $color-black;
   background: $color-bg;
+  @media screen and (max-width: 600px) {
+    font-size: 12px;
+  }
 }
 
 .container {
   width: 100%;
   max-width: 1170px;
+  padding: 0 40px;
   margin: 0 auto;
+  @media screen and (max-width: 600px) {
+    padding: 0 10px;
+  }
 }
 
 h1 {
@@ -37,12 +44,18 @@ h1 {
   font-size: 76px;
   text-align: center;
   color: $color-blue;
+  @media screen and (max-width: 600px) {
+    font-size: 56px;
+  }
 }
 
 p {
   margin: 0;
   margin-bottom: 20px;
   font-size: 30px;
+  @media screen and (max-width: 600px) {
+    font-size: 24px;
+  }
 }
 
 img {

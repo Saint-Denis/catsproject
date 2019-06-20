@@ -1,5 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const WorkboxPlugin = require('workbox-webpack-plugin');
 
 module.exports = {
   entry: "./src/index.js",
@@ -50,6 +51,10 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: "./src/index.html"
+    }),
+    new WorkboxPlugin.GenerateSW({
+      clientsClaim: true,
+      skipWaiting: true
     })
   ],
   devtool: 'inline-source-map',

@@ -13,6 +13,7 @@ const authReducer = (state = initState, action) => {
                 authError: "Login failed"
             }
         }
+
         case types.LOGIN_SUCCESS: {
            return {
                ...state,
@@ -20,18 +21,21 @@ const authReducer = (state = initState, action) => {
                user: action.payload
            }
         }
+
         case types.SIGN_UP_SUCCESS: {
             return {
                 ...state,
                 authError: null
             }
-         }
-         case types.SIGN_UP_ERROR: {
+        }
+
+        case types.SIGN_UP_ERROR: {
             return {
                 ...state,
                 authError: action.err.message
             }
-         }
+        }
+
         default:
             return state;
     }

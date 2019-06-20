@@ -25,7 +25,9 @@ const removeFromoFavorite = (id) => {
                 id,
              });
           } catch (err) {
-            console.log(err)
+            dispatch({
+              type: types.REMOVE_FROM_FAVORITE_FAILED,
+            })
         }
     }
 }

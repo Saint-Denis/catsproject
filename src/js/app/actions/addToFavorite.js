@@ -38,7 +38,9 @@ const addToFavorite = (catImage, id) => {
             })
             return true;
           } catch (err) {
-            console.log('err', err);
+            dispatch({
+              type: types.ADD_TO_FAVORITE_FAILED,
+            })
           }
     }
 }

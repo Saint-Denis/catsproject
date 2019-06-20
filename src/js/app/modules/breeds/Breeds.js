@@ -1,27 +1,26 @@
 import React from "react"
-import Swiper from "react-id-swiper/lib/ReactIdSwiper.full";
-import swiperConfig from "./config";
 
-function Breeds ({breedsList, handleSpecificBreed}) {
+function Breeds({ breedsList, handleSpecificBreed, selectedBreedId }) {
+    if (!breedsList) return null
+
     return (
         <div className="breeds">
-            <p className="breeds__text">Choose a breed</p>
+            <p className="breeds__text">All Breeds</p>
             <div className="breeds__container">
                 <div className="breeds__list">
-                <Swiper {...swiperConfig}>
-                    {breedsList &&
-                    breedsList.map(breed => {
+                    {breedsList.map(breed => {
                         return (
-                        <div
+                        <button
                             key={breed.id}
-                            className="breeds__item"
+                                className={
+                                    selectedBreedId === breed.id ?
+                                        "breeds__item active" : "breeds__item"}
                             onClick={() => handleSpecificBreed(breed.id)}
                         >
                             {breed.name}
-                        </div>
+                        </button>
                         );
                     })}
-                </Swiper>
                 </div>
             </div>
        </div>

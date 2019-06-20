@@ -2,7 +2,6 @@ import React, { Component, Fragment } from 'react';
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { signUp } from "../../actions/authActions";
-import fetchFavorites from "../../actions/fetchFavorites";
 
 class SignUp extends Component {
     state = {
@@ -18,12 +17,12 @@ class SignUp extends Component {
     }
     handleSubmit = (e) => {
        e.preventDefault();
-        this.props.signUp(this.state);
-        this.props.fetchFavorites();
+       this.props.signUp(this.state);
     }
     render () {
         const { auth, authError } = this.props
-        if(auth.uid) return <Redirect to="/" />
+        if (auth.uid) return <Redirect to="/" />
+
         return (
             <Fragment>
                 <h1>Sign Up</h1>
@@ -86,7 +85,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         signUp: (newUser) => dispatch(signUp(newUser)),
-        fetchFavorites: () => dispatch(fetchFavorites()),
     }
 }
 
