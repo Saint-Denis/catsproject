@@ -5,7 +5,6 @@ import removeFromFavorite from "../../actions/removeFromFavorite";
 
 
 class Cat extends Component {
-
     getCatsId = () => {
         const { randomCatId, selectedBreedId, favoriteId } = this.props
         return selectedBreedId === null ? randomCatId : selectedBreedId || favoriteId
@@ -17,13 +16,9 @@ class Cat extends Component {
             removeFromFavorite,
             catImage,
             favorites,
-            userId,
         } = this.props
 
         const isFavorite = favorites.find(el => el.id === this.getCatsId())
-
-        console.log('isFavorite', isFavorite)
-        console.log('favorites', favorites)
 
         if (!isFavorite) {
             addToFavorite(catImage, this.getCatsId());

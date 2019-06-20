@@ -5,7 +5,7 @@ import { Redirect } from "react-router-dom";
 import { firestoreConnect } from "react-redux-firebase";
 import Cat from "../cat/Cat"
 
-function Favorites ({favorites, userId, requested }) {
+function Favorites ({favorites, userId}) {
   const isReadyToShowFavorites = favorites && favorites[userId]  && favorites[userId].favorites.length > 0
 
   if(!isReadyToShowFavorites) return null
@@ -36,8 +36,6 @@ const mapStateToProps = (state) => {
     favorites: state.firestore.data.favorites,
     auth: state.firebase.auth,
     userId: state.firebase.auth.uid,
-    requesting: state.firestore.status.requesting,
-    requested:  state.firestore.requested,
   }
 }
 
